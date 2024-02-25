@@ -1,0 +1,5 @@
+res://Scenes/level_1.tscn
+res://Scenes/bullet.tscn
+res://Scenes/enemy.tscn
+res://Scenes/enemy_bullet.tscn
+res://Scenes/ship.tscn

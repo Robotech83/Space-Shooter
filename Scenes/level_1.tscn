@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyup2qi76jrg7"]
+
+[ext_resource type="Script" path="res://Scripts/level_1.gd" id="1_bar0o"]
+[ext_resource type="PackedScene" uid="uid://dhi81y1vwm24d" path="res://Scenes/ship.tscn" id="1_n50qk"]
+[ext_resource type="Script" path="res://Scripts/Path2D.gd" id="3_mskxp"]
+[ext_resource type="AudioStream" uid="uid://b86ba0ubfobbg" path="res://Assets/audio/battleThemeA.mp3" id="3_wo33o"]
+
+[sub_resource type="Curve2D" id="Curve2D_amks4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1139, 9, -0.0234111, -1.31578, 0.0234111, 1.31578, 1139, 30, 0, 0, 0, 0, -17, 30, -4.12506, 4.31088, 4.12506, -4.31088, -17, 56, 0, 0, 0, 0, 1136, 55, 0, 0, 0, 0, 1137, 83, 8.375, -3.8125, -8.375, 3.8125, -18, 82, 0, 0, 0, 0, -18, 116, 0, 0, 0, 0, 1137, 114, 0, 0, 0, 0, 1140, 110, 0, 0, 0, 0, 1234, 62, 0, 0, 0, 0, 1220, 3, 0, 0, 0, 0, 1143, 5)
+}
+point_count = 13
+
+[node name="Level_1" type="Node2D"]
+script = ExtResource("1_bar0o")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -4.0
+offset_top = -3.0
+offset_right = 1135.0
+offset_bottom = 647.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" parent="." node_paths=PackedStringArray("bullets_node") instance=ExtResource("1_n50qk")]
+bullets_node = NodePath("../bullets")
+
+[node name="bullets" type="Node2D" parent="."]
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="." node_paths=PackedStringArray("bullets_node")]
+position = Vector2(4, 0)
+curve = SubResource("Curve2D_amks4")
+script = ExtResource("3_mskxp")
+bullets_node = NodePath("../bullets")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(559, 318)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_wo33o")
+volume_db = -19.809
+pitch_scale = 1.08
+autoplay = true
+
+[node name="is_wave_done_timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="is_wave_done_timer" to="." method="_on_is_wave_done_timer_timeout"]

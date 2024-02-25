@@ -1,0 +1,14 @@
+CollisionShape2D
+Area2D
+Timer
+Marker2D
+AudioStreamPlayer2D
+AudioStreamPlayer
+Path2D
+Camera2D
+PathFollow2D
+Node2D
+Sprite2D
+ColorRect
+CharacterBody2D
+TextureRect
